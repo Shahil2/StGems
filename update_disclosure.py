@@ -1,9 +1,40 @@
 import re
 
-with open('cbse-disclosure.html', 'r', encoding='utf-8') as f:
-    html = f.read()
+documents = [
+    ("Mandatory Disclosure Details", "Mandatory Disclosure Details.pdf"),
+    ("NOC", "NOC.pdf"),
+    ("Society Registration Certificate.", "Society Registration Certificate.pdf"),
+    ("Building Fitness", "Building Fitness.pdf"),
+    ("Affiliation Grant Letter", "Affiliation Grant Letter.pdf"),
+    ("Affidavit by School Manager regarding Non Proprietary Character of Society", "Affidavit by School Manager regarding Non Proprietary Character of Society.pdf"),
+    ("Fire & Safety Certificate", "Fire & Safety Certificate.pdf"),
+    ("LAND LEASE DEED( for 30 years)", "LAND LEASE DEED( for 30 years).pdf"),
+    ("Water and Sanitary Certificate", "Water and Sanitary Certificate.pdf"),
+    ("Hygiene and Sanitary Certificate from Panchayat", "Hygiene and Sanitary Certificate from Panchayat.pdf"),
+    ("School Management Committee", "School Management Committee.pdf"),
+    ("PTA executive members", "PTA executive members.pdf"),
+    ("Fee structure", "Fee structure.pdf"),
+    ("Staff details", "Staff details.pdf"),
+    ("Last 3 years board exam results", "Last 3 years board exam results.pdf"),
+    ("School Calendar 2024-2025", "School Calendar 2024-2025.pdf"),
+    ("Water Test Report", "Water Test Report.pdf"),
+    ("Self Certification Proforma", "Self Certification Proforma.pdf"),
+    ("Land Certicare", "Land Certicare.pdf")
+]
 
-new_content = """    <!-- Page Content -->
+links_html = ""
+for title, filename in documents:
+    # URL encode filename
+    import urllib.parse
+    url = f"docs/disclosure/{urllib.parse.quote(filename)}"
+    
+    links_html += f"""
+            <a href="{url}" target="_blank" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
+              <span class="font-medium text-gray-700 group-hover:text-royal-blue">{title}</span>
+              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
+            </a>"""
+
+new_content = f"""    <!-- Page Content -->
     <section class="py-20 px-4 bg-white min-h-[50vh]">
       <div class="max-w-4xl mx-auto">
         <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm p-6">
@@ -16,88 +47,15 @@ new_content = """    <!-- Page Content -->
             </div>
           </div>
 
-          <div class="space-y-3">
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Mandatory Disclosure Details</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">NOC</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Society Registration Certificate.</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Building Fitness</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Affiliation Grant Letter</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Affidavit by School Manager regarding Non Proprietary Character of Society</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Fire & Safety Certificate</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">LAND LEASE DEED( for 30 years)</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Water and Sanitary Certificate</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Hygiene and Sanitary Certificate from Panchayat</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">School Management Committee</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">PTA executive members</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Fee structure</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Staff details</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Last 3 years board exam results</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">School Calendar 2024-2025</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Water Test Report</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Self Certification Proforma</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
-            <a href="#" class="block p-4 border border-gray-100 rounded-lg hover:border-royal-blue hover:shadow-md transition-all group flex justify-between items-center">
-              <span class="font-medium text-gray-700 group-hover:text-royal-blue">Land Certicare</span>
-              <span class="text-royal-blue text-sm font-semibold">Click Here</span>
-            </a>
+          <div class="space-y-3">{links_html}
           </div>
 
         </div>
       </div>
     </section>"""
+
+with open('cbse-disclosure.html', 'r', encoding='utf-8') as f:
+    html = f.read()
 
 replaced = re.sub(r'<!-- Page Content -->.*?</section>', new_content, html, flags=re.DOTALL)
 
