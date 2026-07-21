@@ -66,7 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const dropdown = toggle.nextElementSibling;
       const icon = toggle.querySelector('.dropdown-arrow');
+      
       dropdown.classList.toggle('open');
+      
+      if (dropdown.classList.contains('open')) {
+        dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
+      } else {
+        dropdown.style.maxHeight = '0px';
+      }
+
       if (icon) {
         icon.style.transform = dropdown.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0)';
       }
