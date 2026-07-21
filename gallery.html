@@ -292,6 +292,18 @@
     <section class="py-20 px-4 bg-white min-h-[50vh]">
       <div class="max-w-7xl mx-auto">
         
+        <!-- Featured Video -->
+        <div class="mb-16">
+          <div class="text-center mb-8">
+            <h2 class="font-heading text-3xl font-bold text-navy">Featured Video</h2>
+          </div>
+          <div class="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-xl">
+            <div class="relative w-full" style="padding-top: 56.25%;">
+              <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/oKhaq2g7j7A" title="St Gregorios School Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+
         <!-- Category Filter (Static implementation for now) -->
         <div class="flex flex-wrap justify-center gap-4 mb-12">
           <button class="px-6 py-2 rounded-full bg-navy text-white font-medium text-sm transition-colors">All</button>
@@ -302,6 +314,14 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Gallery Item (CBSE Award) -->
+          <div class="aspect-square rounded-xl overflow-hidden bg-gray-200 relative group cursor-pointer gallery-item">
+            <img src="images/gallery/cbse-award.jpg" alt="CBSE 100% Success Award" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'">
+            <div class="absolute inset-0 bg-navy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
+              <span class="text-white font-medium text-sm">Receiving the award for 100% success in the CBSE examination from Education Minister Shri Shamsudheen</span>
+            </div>
+          </div>
+          
           <!-- Gallery Item 1 -->
           <div class="aspect-square rounded-xl overflow-hidden bg-gray-200 relative group cursor-pointer gallery-item">
             <img src="images/gallery/gallery-1.jpg" alt="School Event" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.style.display='none'">
